@@ -1,31 +1,43 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require('hardhat');
+var fs = require('fs');
 
-async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
-  const lockedAmount = hre.ethers.utils.parseEther("1");
-
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+async function compile () {
+    await hre.run('compile');
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+async function main () {
+    await compile();
+    const [deployer] = await hre.ethers.getSigners();
+    const accountBalance = (await deployer.getBalance()).toString()
+    console.log('compile result is ', deployer.address);
+    console.log('Account balance is ', accountBalance);
+
+    const targetContract = await hre.ethers.getContractFactory("Gravity");
+    // const deployContract = await targetContract.deploy([
+    //     "0xaf6Da626590162e4cCcfc274304d238f0597fF7e",
+    //     "0x0A0c2601C7874E77a401D91f8085DD07b040E595",
+    //     "0x724f337bF0Fa934dB9aa3ec6dEa49B03c54AD3cc"
+    // ]);
+    const deployContract = await targetContract.deploy();
+    await deployContract.deployed();
+    const temp = {
+        address: deployContract.address,
+    }
+    const json = JSON.stringify(temp);
+    console.log('result of json is ', json);
+    fs.writeFileSync('./deployedAddress.json', json, (err) => {
+        if(err) {
+            console.log('ERROR! while creating file: ', err);
+        } else {
+            console.log('result is ', json)
+        }
+    });
+    console.log("Contract deployed at ", deployContract.address);
+}
+
+main()
+.then(() => process.exit(0))
+.catch((err) => {
+    console.log(err);
+    process.exit(1);
+})
