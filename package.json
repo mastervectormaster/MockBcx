@@ -1,0 +1,15 @@
+{
+  "name": "MockBcx",
+  "version": "1.0.0",
+  "description": "MockBcx Token with Hardhat",
+  "main": "index.js",
+  "author": "mastervectormaster <vectormaster123456789@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.1",
+    "hardhat": "^2.11.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  }
+}
