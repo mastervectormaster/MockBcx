@@ -11,5 +11,17 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3"
+  },
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "deploy:ropsten": "npx hardhat run --network ropsten scripts/deploy.js",
+    "deploy:rinkeby": "npx hardhat run --network rinkeby scripts/deploy.js",
+    "deploy:goerli": "npx hardhat run --network goerli scripts/deploy.js",
+    "deploy:hardhat": "npx hardhat run --network hardhat scripts/deploy.js",
+    "deploy:ganache": "npx hardhat run --network ganache scripts/deploy.js",
+    "deploy:bscTest": "npx hardhat run --network bscTest scripts/deploy.js",
+    "verifyContract:ropsten": "npx hardhat verifycontract --network ropsten --show-stack-traces",
+    "verifyContract:rinkeby": "npx hardhat verifycontract --network rinkeby --show-stack-traces",
+    "verifyContract:goerli": "npx hardhat verifycontract --network goerli --show-stack-traces"
   }
 }
