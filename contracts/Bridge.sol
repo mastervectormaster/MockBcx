@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Address.sol";
 
 error InvalidSendToCosmos();
 
-contract Gravity is ReentrancyGuard {
+contract Bridge is ReentrancyGuard {
 	using SafeERC20 for IERC20;
 
 	event SendToCosmosEvent(
