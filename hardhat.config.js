@@ -70,6 +70,10 @@ module.exports = {
 		bscTest: {
 			url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
 			accounts: [`0x${process.env.PRIVATE_KEY}`]
+		},
+		polygonTest: {
+			url: 'https://rpc-mumbai.matic.today',
+			accounts: [`0x${process.env.POLYGON_PRIVATE_KEY}`]
 		}
 	},
 	etherscan: {

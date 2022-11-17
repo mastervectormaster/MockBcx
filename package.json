@@ -12,7 +12,7 @@
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "dotenv": "^16.0.3",
     "ethereum-waffle": "^3.2.0",
-    "ethers": "^5.0.0",
+    "ethers": "^5.7.2",
     "hardhat": "^2.11.2"
   },
   "dependencies": {
@@ -26,6 +26,8 @@
     "deploy:hardhat": "npx hardhat run --network hardhat scripts/deploy.js",
     "deploy:ganache": "npx hardhat run --network ganache scripts/deploy.js",
     "deploy:bscTest": "npx hardhat run --network bscTest scripts/deploy.js",
+    "deploy:polygonTest": "npx hardhat run --network polygonTest scripts/deploy.js",
+    "invoke": "node scripts/invoke.js",
     "verifyContract:ropsten": "npx hardhat verifycontract --network ropsten --show-stack-traces",
     "verifyContract:rinkeby": "npx hardhat verifycontract --network rinkeby --show-stack-traces",
     "verifyContract:goerli": "npx hardhat verifycontract --network goerli --show-stack-traces"
